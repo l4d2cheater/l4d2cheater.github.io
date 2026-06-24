@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;900&amp;display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="./assets/css/s.css">
+</head>
+    <div id="overlay" class="overlay">
+        <h1>click to enter</h1>
+    </div>
+    <div class="background"></div>
+    <div id="particles-js"></div>
+    <div class="logging">
+        <p>[ <span style="color: greenyellow;">cshmark.xyz</span> ] welcome u nab, enjoy ur stay</p>
+    </div>
+    <div class="card">
+        <div class="divide"></div>
+            <img draggable="false" ondragstart="return false" class="pfp" id="discord-pfp">
+        </a>
+        <h1 class="username" id="discord-username"></h1>
+        <p id="discord-status-text" style="color: rgb(212, 212, 212); margin-top: 2px; font-family: 'Source Code Pro', monospace; font-size: 15px;"></p>
+        <div class="s">
+            <a href="https://web.archive.org/web/20241110225349/https://discord.com/users/1239317024086298678">discord</a> |
+            <a href="https://web.archive.org/web/20241110225349/https://steamcommunity.com/id/cshmark">steam</a> |
+            <a href="https://web.archive.org/web/20241110225349/https://github.com/markie1111">github</a>
+        </div>
+    </div>
+    <script src="./assets/js/particles.min.js"></script>
+    <script src="./assets/js/particles.js"></script>
+
+    <script>
+        var audio = new Audio('./assets/audio/song.mp3');
+        audio.volume = .2;
+        audio.loop = true;
+        document.getElementById('overlay').addEventListener('click', function () {
+            this.classList.add('fade-out');
+
+            audio.play();
+
+            document.querySelector('.card').style.animation = 'zsido 1s ease-in';
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add('no-scroll');
+        });
+
+        const discordUserID = '1445012159447826659';
+
+        async function updateDiscordInfo() {
+            try {
+                const response = await fetch(`https://api.lanyard.rest/v1/users/${discordUserID}`);
+                const data = await response.json();
+
+                if (data && data.success) {
+                    const { discord_user, discord_status, spotify } = data.data;
+
+                    document.getElementById('discord-pfp').src = `https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png?size=512`;
+                    document.getElementById('discord-username').textContent = discord_user.username;
+
+                    const statusColors = {
+                        online: '#00ff04cc',
+                        idle: '#ffbf00cc',
+                        dnd: '#ff0000cc',
+                        offline: '#808080cc'
+                    };
+
+                    const statusText = {
+                        online: 'online',
+                        idle: 'idle',
+                        dnd: 'do not disturb',
+                        offline: 'offline'
+                    };
+
+                    const borderColor = statusColors[discord_status] || '#808080cc';
+                    const statusMessage = `${statusText[discord_status] || 'offline'}`;
+
+                    document.getElementById('discord-pfp').style.borderColor = borderColor;
+                    document.getElementById('discord-status-text').textContent = statusMessage;
+                }
+            } catch (error) {
+                console.error('skill issue', error);
+            }
+        }
+
+        updateDiscordInfo();
+    </script>
+</body>
+
+</html>

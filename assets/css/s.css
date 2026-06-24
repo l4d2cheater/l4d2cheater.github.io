@@ -1,0 +1,132 @@
+@keyframes zsido {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Montserrat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/bg.jpg');
+    user-select: none;
+    background-color: #adadad3a;
+    background-blend-mode: overlay;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.logging {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-family: 'Source Code Pro', monospace;
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 2;
+    opacity: 0.75;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #111;
+    padding: 20px;
+    z-index: 2;
+    border: solid 5px #282828;
+}
+
+.divide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, rgb(30, 87, 153), rgb(243, 0, 255) 50%, rgb(224, 255, 0) 100%);
+    z-index: 2;
+    opacity: 75%;
+}
+
+.pfp {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: solid 4px #ffffff;
+}
+
+.username {
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+.s {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    color: gray;
+}
+
+.s a {
+    color: #c3c3c3;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color .3s ease;
+}
+
+.s a:hover {
+    color: #f4f4f4;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 30px;
+    z-index: 1000;
+    user-select: none;
+    cursor: default;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlay h1 {
+    text-align: center;
+    font-size: 15.5px;
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+}
